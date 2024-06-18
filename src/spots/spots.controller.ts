@@ -1,34 +1,46 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
-import { SpotsService } from './spots.service';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Patch,
+  Post,
+} from '@nestjs/common';
 import { CreateSpotDto } from './dto/create-spot.dto';
 import { UpdateSpotDto } from './dto/update-spot.dto';
+import { SpotsService } from './spots.service';
 
-@Controller('spots')
+@Controller('events/:eventId/spots')
 export class SpotsController {
   constructor(private readonly spotsService: SpotsService) {}
 
   @Post()
-  create(@Body() createSpotDto: CreateSpotDto) {
-    return this.spotsService.create(createSpotDto);
+  create(@Param() eventId: string, @Body() createSpotDto: CreateSpotDto) {
+    return this.spotsService.create(eventId, createSpotDto);
   }
 
   @Get()
-  findAll() {
-    return this.spotsService.findAll();
+  findAll(@Param() eventId: string) {
+    return this.spotsService.findAll(eventId);
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.spotsService.findOne(+id);
+  @Get(':postId')
+  findOne(@Param('postId') postId: string, @Param() eventId: string) {
+    return this.spotsService.findOne(eventId, postId);
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateSpotDto: UpdateSpotDto) {
-    return this.spotsService.update(+id, updateSpotDto);
+  @Patch(':postId')
+  update(
+    @Param('postId') postId: string,
+    @Param() eventId: string,
+    @Body() updateSpotDto: UpdateSpotDto,
+  ) {
+    return this.spotsService.update(eventId, postId, updateSpotDto);
   }
 
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.spotsService.remove(+id);
+  @Delete(':postId')
+  remove(@Param('postId') postId: string, @Param() eventId: string) {
+    return this.spotsService.remove(eventId, postId);
   }
 }
