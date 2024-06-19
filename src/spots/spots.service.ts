@@ -9,7 +9,7 @@ export class SpotsService {
   constructor(private prismaService: PrismaService) {}
 
   async create(eventId: string, createSpotDto: CreateSpotDto) {
-    const isEventExists = await this.prismaService.event.findUnique({
+    const isEventExists = await this.prismaService.event.findFirst({
       where: {
         id: eventId,
       },
