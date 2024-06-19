@@ -1,0 +1,33 @@
+GET http://localhost:3001/eventos
+
+###
+
+GET http://localhost:3001/eventos/71361e0b-cd9d-40af-96d6-3efa1445d659
+
+###
+
+POST http://localhost:3001/eventos
+Content-Type: application/json
+
+{
+    "nome": "Novo Evento",
+    "descricao": "Esse é um novo evento",
+    "data": "2017-01-01T00:00:00",
+    "preco": 50
+}
+
+###
+
+PATCH http://localhost:3001/eventos/71361e0b-cd9d-40af-96d6-3efa1445d659
+Content-Type: application/json
+
+{
+    "nome": "Nova Atualizacao Evento",
+    "descricao": "Essa é uma nova atualização evento",
+    "data": "2017-01-01T00:00:00",
+    "preco": 200
+}
+
+###
+
+DELETE http://localhost:3001/eventos/71361e0b-cd9d-40af-96d6-3efa1445d659
