@@ -1,3 +1,4 @@
+import { AuthGuard } from '@app/core/auth/auth.guard';
 import {
   Body,
   Controller,
@@ -8,6 +9,7 @@ import {
   Param,
   Patch,
   Post,
+  UseGuards,
 } from '@nestjs/common';
 import { EventsService } from '../../../../libs/core/src/events/events.service';
 import { AtualizarEventoRequest } from './request/atualizar-evento.request';
@@ -57,6 +59,7 @@ export class EventosController {
     return this.eventsService.remove(id);
   }
 
+  @UseGuards(AuthGuard)
   @Post(':id/reservar')
   reserveSpots(
     @Param('id') id: string,

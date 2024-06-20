@@ -28,8 +28,8 @@ export class SpotsService {
     });
   }
 
-  findAll(eventId: string) {
-    return this.prismaService.spot.findMany({
+  async findAll(eventId: string) {
+    return await this.prismaService.spot.findMany({
       where: {
         eventId,
       },

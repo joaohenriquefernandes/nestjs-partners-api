@@ -3,6 +3,8 @@ import {
   Controller,
   Delete,
   Get,
+  HttpCode,
+  HttpStatus,
   Param,
   Patch,
   Post,
@@ -17,33 +19,34 @@ export class SpotsController {
 
   @Post()
   create(
-    @Param() eventId: string,
+    @Param('eventId') eventId: string,
     @Body() createSpotRequest: CreateSpotRequest,
   ) {
     return this.spotsService.create(eventId, createSpotRequest);
   }
 
   @Get()
-  findAll(@Param() eventId: string) {
+  findAll(@Param('eventId') eventId: string) {
     return this.spotsService.findAll(eventId);
   }
 
   @Get(':postId')
-  findOne(@Param('postId') postId: string, @Param() eventId: string) {
+  findOne(@Param('postId') postId: string, @Param('eventId') eventId: string) {
     return this.spotsService.findOne(eventId, postId);
   }
 
   @Patch(':postId')
   update(
     @Param('postId') postId: string,
-    @Param() eventId: string,
+    @Param('eventId') eventId: string,
     @Body() updateSpotRequest: UpdateSpotRequest,
   ) {
     return this.spotsService.update(eventId, postId, updateSpotRequest);
   }
 
+  @HttpCode(HttpStatus.NO_CONTENT)
   @Delete(':postId')
-  remove(@Param('postId') postId: string, @Param() eventId: string) {
+  remove(@Param('postId') postId: string, @Param('eventId') eventId: string) {
     return this.spotsService.remove(eventId, postId);
   }
 }
