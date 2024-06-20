@@ -3,6 +3,8 @@ import {
   Controller,
   Delete,
   Get,
+  HttpCode,
+  HttpStatus,
   Param,
   Patch,
   Post,
@@ -17,7 +19,7 @@ export class LugaresController {
 
   @Post()
   create(
-    @Param() eventoId: string,
+    @Param('eventoId') eventoId: string,
     @Body() criarLugarRequest: CriarLugarRequest,
   ) {
     return this.spotsService.create(eventoId, {
@@ -26,19 +28,22 @@ export class LugaresController {
   }
 
   @Get()
-  findAll(@Param() eventoId: string) {
+  findAll(@Param('eventoId') eventoId: string) {
     return this.spotsService.findAll(eventoId);
   }
 
   @Get(':lugarId')
-  findOne(@Param('lugarId') lugarId: string, @Param() eventoId: string) {
+  findOne(
+    @Param('lugarId') lugarId: string,
+    @Param('eventoId') eventoId: string,
+  ) {
     return this.spotsService.findOne(eventoId, lugarId);
   }
 
   @Patch(':lugarId')
   update(
     @Param('lugarId') lugarId: string,
-    @Param() eventoId: string,
+    @Param('eventoId') eventoId: string,
     @Body() atualizarLugarRequest: AtualizarLugarRequest,
   ) {
     return this.spotsService.update(eventoId, lugarId, {
@@ -46,8 +51,12 @@ export class LugaresController {
     });
   }
 
+  @HttpCode(HttpStatus.NO_CONTENT)
   @Delete(':lugarId')
-  remove(@Param('lugarId') lugarId: string, @Param() eventoId: string) {
+  remove(
+    @Param('lugarId') lugarId: string,
+    @Param('eventoId') eventoId: string,
+  ) {
     return this.spotsService.remove(eventoId, lugarId);
   }
 }

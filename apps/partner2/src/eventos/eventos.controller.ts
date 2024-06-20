@@ -11,6 +11,7 @@ import {
   Post,
   UseGuards,
 } from '@nestjs/common';
+import { TicketKind } from '@prisma/client';
 import { EventsService } from '../../../../libs/core/src/events/events.service';
 import { AtualizarEventoRequest } from './request/atualizar-evento.request';
 import { CriarEventoRequest } from './request/cria-evento.request';
@@ -68,7 +69,10 @@ export class EventosController {
     return this.eventsService.reserveSpot(id, {
       email: reservarLugarRequest.email,
       spots: reservarLugarRequest.lugares,
-      ticket_kind: reservarLugarRequest.tipo_ingresso,
+      ticket_kind:
+        reservarLugarRequest.tipo_ingresso === 'inteira'
+          ? TicketKind.full
+          : TicketKind.half,
     });
   }
 }
