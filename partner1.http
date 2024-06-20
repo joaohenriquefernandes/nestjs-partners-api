@@ -31,3 +31,46 @@ Content-Type: application/json
 ###
 
 DELETE http://localhost:3000/events/b9a6dfa0-19c3-4e4c-825f-938ab675f193
+
+###
+
+POST http://localhost:3000/events/d90bd79b-5196-4f6d-be1f-cf3ff62b37ea/reserve
+Content-Type: application/json
+X-Api-Token: 123
+
+{
+    "spots": ["B2"],
+    "ticket_kind": "half",
+    "email": "test@test.com"
+}
+
+
+###
+
+GET http://localhost:3000/events/d90bd79b-5196-4f6d-be1f-cf3ff62b37ea/spots
+
+###
+
+GET http://localhost:3000/events/d90bd79b-5196-4f6d-be1f-cf3ff62b37ea/spots/6425038a-3900-4dcf-b0df-bbabb03d69c1
+
+###
+
+POST http://localhost:3000/events/d90bd79b-5196-4f6d-be1f-cf3ff62b37ea/spots
+Content-Type: application/json
+
+{
+    "name": "B2"
+}
+
+###
+
+PATCH  http://localhost:3000/events/d90bd79b-5196-4f6d-be1f-cf3ff62b37ea/spots/fd7b190c-8e6f-4c24-a9eb-2007a1606bac
+Content-Type: application/json
+
+{
+    "name": "B1"
+}
+
+###
+
+DELETE http://localhost:3000/events/d90bd79b-5196-4f6d-be1f-cf3ff62b37ea/spots/fd7b190c-8e6f-4c24-a9eb-2007a1606bac

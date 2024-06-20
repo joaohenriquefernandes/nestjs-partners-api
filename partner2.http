@@ -2,7 +2,7 @@ GET http://localhost:3001/eventos
 
 ###
 
-GET http://localhost:3001/eventos/71361e0b-cd9d-40af-96d6-3efa1445d659
+GET http://localhost:3001/eventos/889df5e4-c4f9-4a19-951e-5354184d6453
 
 ###
 
@@ -18,7 +18,7 @@ Content-Type: application/json
 
 ###
 
-PATCH http://localhost:3001/eventos/71361e0b-cd9d-40af-96d6-3efa1445d659
+PATCH http://localhost:3001/eventos/889df5e4-c4f9-4a19-951e-5354184d6453
 Content-Type: application/json
 
 {
@@ -30,4 +30,50 @@ Content-Type: application/json
 
 ###
 
-DELETE http://localhost:3001/eventos/71361e0b-cd9d-40af-96d6-3efa1445d659
+DELETE http://localhost:3001/eventos/66b95155-a6f1-44b4-b04d-3d62a3a77269
+
+###
+
+###
+
+POST http://localhost:3001/eventos/889df5e4-c4f9-4a19-951e-5354184d6453/reservar
+Content-Type: application/json
+X-Api-Token: 123
+
+{
+    "lugares": ["A1", "A2"],
+    "tipo_ingresso": "meia",
+    "email": "test@test.com"
+}
+
+
+###
+GET http://localhost:3001/eventos/889df5e4-c4f9-4a19-951e-5354184d6453/lugares
+
+###
+
+GET http://localhost:3001/eventos/889df5e4-c4f9-4a19-951e-5354184d6453/lugares/b40165d1-1c85-4177-8369-db1bd6362dfb
+
+###
+
+POST http://localhost:3001/eventos/889df5e4-c4f9-4a19-951e-5354184d6453/lugares
+Content-Type: application/json
+
+{
+    "nome": "A2"
+}
+
+###
+
+PATCH  http://localhost:3001/eventos/889df5e4-c4f9-4a19-951e-5354184d6453/lugares/b906aa25-c05a-4598-b54c-0ebd4a901e8b
+Content-Type: application/json
+
+{
+    "nome": "B1"
+}
+
+###
+
+DELETE http://localhost:3001/eventos/889df5e4-c4f9-4a19-951e-5354184d6453/lugares/b906aa25-c05a-4598-b54c-0ebd4a901e8b
+
+###
